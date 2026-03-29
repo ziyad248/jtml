@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "email": "alice.johnson@example.com",
+    "age": 30,
+    "active": true,
+    "role": "admin",
+    "created_at": "2024-01-15T10:30:00Z",
+    "tags": ["engineering", "leadership", "typescript"]
+  },
+  {
+    "id": 2,
+    "name": "Bob Smith",
+    "email": "bob.smith@example.com",
+    "age": 25,
+    "active": true,
+    "role": "developer",
+    "created_at": "2024-02-20T14:45:00Z",
+    "tags": ["frontend", "react", "javascript"]
+  },
+  {
+    "id": 3,
+    "name": "Charlie Davis",
+    "email": "charlie.davis@example.com",
+    "age": 35,
+    "active": false,
+    "role": "designer",
+    "created_at": "2024-03-10T09:15:00Z",
+    "tags": ["ui", "ux", "figma"]
+  },
+  {
+    "id": 4,
+    "name": "Diana Martinez",
+    "email": "diana.martinez@example.com",
+    "age": 28,
+    "active": true,
+    "role": "developer",
+    "created_at": "2024-01-25T11:20:00Z",
+    "tags": ["backend", "python", "api"]
+  },
+  {
+    "id": 5,
+    "name": "Ethan Wilson",
+    "email": "ethan.wilson@example.com",
+    "age": 32,
+    "active": true,
+    "role": "manager",
+    "created_at": "2024-02-05T16:00:00Z",
+    "tags": ["management", "agile", "scrum"]
+  }
+]
