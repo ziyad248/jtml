@@ -7,6 +7,8 @@
 [![npm downloads](https://img.shields.io/npm/dm/@jtml/core.svg)](https://www.npmjs.com/package/@jtml/core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+**[Live demo & docs → jtml.dev](https://www.jtml.dev/)**
+
 ---
 
 ## Why JTML?
